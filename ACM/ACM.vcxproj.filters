@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2751_qsort.cpp">
+    <ClCompile Include="10814_mergesort.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
