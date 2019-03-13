@@ -13,6 +13,8 @@ bool cmp(Person &a, Person &b)
 {
 	if (a.nAge < b.nAge)
 		return true;
+	else if (a.nAge == b.nAge)
+		return (strcmp(a.szName, b.szName) <= 0);
 	else
 		return false;
 }
@@ -25,6 +27,7 @@ void cpy(Person &from, Person &to)
 void mergesort(Person* pPeople, Person* pTemp, int low, int high)
 {
 	int nSplit = (high + low) / 2;
+	if (high < low) return;
 	if (high - low > 1)
 	{
 		mergesort(pPeople, pTemp, low, nSplit);
@@ -37,28 +40,28 @@ void mergesort(Person* pPeople, Person* pTemp, int low, int high)
 		bool flag = cmp(pPeople[i], pPeople[j]);
 		if(flag)
 		{
-			cpy(pPeople[k], pTemp[i]);
+			cpy(pPeople[i], pTemp[k]);
 			i++;
 		}
 		else
 		{
-			cpy(pPeople[k], pTemp[j]);
+			cpy(pPeople[j], pTemp[k]);
 			j++;
 		}
 		k++;
 	}
 	while (i <= nSplit)
 	{
-		cpy(pPeople[k], pTemp[i]);
+		cpy(pPeople[i], pTemp[k]);
 		i++; k++;
 	}
 	while (j <= high)
 	{
-		cpy(pPeople[k], pTemp[j]);
+		cpy(pPeople[j], pTemp[k]);
 		j++; k++;
 	}
 
-	for (int l = 0; l <= high; l++)
+	for (int l = low; l <= high; l++)
 		cpy(pTemp[l], pPeople[l]);
 	return;
 }
@@ -78,7 +81,6 @@ int main(void)
 	}
 
 	mergesort(pPeople, pTemp, 0, nInput - 1);
-
 	for (int i = 0; i < nInput; i++)
 	{
 		cout << pPeople[i].nAge << ' ' << pPeople[i].szName << '\n';
