@@ -1,72 +1,29 @@
 #include<iostream>
-#include<vector>
-#include<algorithm>
-
 using namespace std;
+int reverse(int x) {
+	int sign = x < 0 ? -1 : 1;
+	/*if (x == 2147483648*-1) 
+		return 0;*/
+	int temp(sign * x);
+	int ans = 0;
+	int len = 0;
+	while (temp > 0)
+	{
+		if (ans <= 214748364)
+		{
+			len++;
+			if (len == 9 && ((temp % 10 > 7 && sign == 1) || (temp % 10 > 8 && sign == -1)))
+				return 0;
+			ans *= 10;
+			ans += temp % 10;
+			temp /= 10;
+		}
+		else return 0;
+	}
 
+	return sign * ans;
+}
 int main(void)
 {
-	vector<int> vPositive;
-	vector<int> vNegative;
-	int nOnes = 0, nZeroes = 0, nResult = 0, nCount;
-
-	cin >> nCount;
-
-	for (int i = 0; i < nCount; i++)
-	{
-		int nTemp;
-		cin >> nTemp;
-		if (nTemp > 1)
-			vPositive.push_back(nTemp);
-		else if (nTemp < 0)
-			vNegative.push_back(nTemp);
-		else if (nTemp == 0)
-			nZeroes++;
-		else
-			nOnes++;
-	}
-
-	sort(vPositive.begin(), vPositive.end());
-	sort(vNegative.begin(), vNegative.end());
-	reverse(vNegative.begin(), vNegative.end());
-
-	int nFirst, nSecond;
-	while (!vPositive.empty())
-	{
-		nFirst = vPositive.back();
-		vPositive.pop_back();
-		if (vPositive.empty())
-		{
-			nSecond = 1;
-		}
-		else
-		{
-			nSecond = vPositive.back();
-			vPositive.pop_back();
-		}
-		nResult += (nFirst*nSecond);
-	}
-	while (!vNegative.empty())
-	{
-		nFirst = vNegative.back();
-		vNegative.pop_back();
-		if (vPositive.empty() && nZeroes > 0)
-		{
-			nSecond = 0;
-			nZeroes--;
-		}
-		else if (vPositive.empty())
-		{
-			nSecond = 1;
-		}
-		else
-		{
-			nSecond = vPositive.back();
-			vPositive.pop_back();
-		}
-		nResult += (nFirst*nSecond);
-	}
-	nResult += nOnes;
-	cout << nResult << endl;
-	return 0;
+	cout << reverse(-900000) << endl;
 }
