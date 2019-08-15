@@ -451,5 +451,8 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+# documents
+*.pdf
+
 # End of https://www.gitignore.io/api/c,c++,windows,visualstudio,visualstudiocode
 
