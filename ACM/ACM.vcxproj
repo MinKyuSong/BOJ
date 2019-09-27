@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="16947.cpp" />
     <ClCompile Include="priorityQueueByHeap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
